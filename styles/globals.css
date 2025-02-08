@@ -1,0 +1,25 @@
+
+.links {
+    color: black !important;
+}
+
+.linksm {
+    color: white !important;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bgcolor {
+    background-color: #A5EEFD;
+}
+.bgt{
+    background-color: transparent;
+}
+.responsiveLogo {
+    max-width: 100%;
+    height: auto;
+    width: 70px; 
+  height: auto;
+  }
+
