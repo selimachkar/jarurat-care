@@ -62,7 +62,7 @@ export default function App() {
       </NavbarContent>
       <NavbarMenu>
         <NavbarMenuItem>
-          <Link className={router === "/" ? "linksm" : undefined} href="#" size="lg">
+          <Link className={router === "/" ? undefined : "linksm"} href="/" size="lg">
             Home
           </Link>
         </NavbarMenuItem>
