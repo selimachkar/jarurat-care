@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 import React, { useEffect } from "react";
 import {
   Navbar,
@@ -11,8 +11,7 @@ import {
 } from "@heroui/navbar";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
-import { usePathname  } from "next/navigation"; 
-import { color } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export const NGOLogo = () => {
   return (
@@ -23,18 +22,22 @@ export const NGOLogo = () => {
 };
 
 export default function App() {
-  const router = usePathname (); 
+  const router = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-    // Close the menu when the route changes
-    useEffect(() => {
-      setIsMenuOpen(false);
-    }, [router]);
-  
+  // Close the menu when the route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [router]);
+
   return (
-    <Navbar className="bgt" onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      className="bgt"
+      isMenuOpen={isMenuOpen} // Controlled state for the menu
+      onMenuOpenChange={setIsMenuOpen} // Update state when menu opens/closes
+    >
       <NavbarContent>
-        <NavbarMenuToggle 
+        <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden links"
         />
@@ -45,15 +48,29 @@ export default function App() {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem isActive={router === "/"}>
-          <Link className={router === "/" ? undefined : "links"} href="/" color={router === "/" ? undefined : "foreground"}>
+          <Link
+            className={router === "/" ? undefined : "links"}
+            href="/"
+            color={router === "/" ? undefined : "foreground"}
+          >
             Home
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link className={router === "/contact" ? undefined : "links"} href="/contact" color={router === "/contact" ? undefined : "foreground"}>Contact</Link>
+          <Link
+            className={router === "/contact" ? undefined : "links"}
+            href="/contact"
+            color={router === "/contact" ? undefined : "foreground"}
+          >
+            Contact
+          </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link className={router === "/int" ? undefined : "links"} color={router === "/int" ? undefined : "foreground"} href="/int">
+          <Link
+            className={router === "/int" ? undefined : "links"}
+            color={router === "/int" ? undefined : "foreground"}
+            href="/int"
+          >
             Integrations
           </Link>
         </NavbarItem>
@@ -69,6 +86,24 @@ export default function App() {
         <NavbarMenuItem>
           <Link className={router === "/" ? undefined : "linksm"} href="/" size="lg">
             Home
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link
+            className={router === "/contact" ? undefined : "linksm"}
+            href="/contact"
+            size="lg"
+          >
+            Contact
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link
+            className={router === "/int" ? undefined : "linksm"}
+            href="/int"
+            size="lg"
+          >
+            Integrations
           </Link>
         </NavbarMenuItem>
       </NavbarMenu>
