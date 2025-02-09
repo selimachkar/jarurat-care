@@ -23,3 +23,7 @@
   height: auto;
   }
 
+  .input-wrapper label { 
+    color: black;
+  }
+
