@@ -17,6 +17,12 @@
 .bgt{
     background-color: transparent;
 }
+
+.map-container-selector { 
+    position: relative; 
+    z-index: 1;       
+    
+}
 .responsiveLogo {
     max-width: 100%;
     height: auto;

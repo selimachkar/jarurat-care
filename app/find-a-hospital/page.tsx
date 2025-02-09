@@ -207,7 +207,7 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row **h-auto** md:h-[600px]"> {/* Flex container height to auto on mobile */}
 
                 {/* Left side - Map */}
-                <div className="w-full md:w-3/5 **h-auto** md:h-full md:pr-4 mb-4 md:mb-0"> {/* Map height to auto on mobile */}
+                <div className="map-container-selector w-full md:w-3/5 **h-auto** md:h-full md:pr-4 mb-4 md:mb-0"> {/* Map height to auto on mobile */}
                     <LeafletMap locationUrls={filteredLocations} />
                 </div>
 
