@@ -7,13 +7,16 @@ if (!uri) {
   throw new Error('Please add your Mongo URI to .env.local');
 }
 
-let client;
-let db;
+
+let cachedClient: typeof MongoClient | null = null;
+let cachedDb: any = null;
 
 async function connectToDatabase() {
-  if (client && db) { // Check if connection already exists
-    return db; // Return existing database instance
+  if (cachedClient && cachedDb) {
+    return cachedDb;
   }
+
+  let client: typeof MongoClient; // Use typeof MongoClient
 
   try {
     client = new MongoClient(uri, {
@@ -24,16 +27,20 @@ async function connectToDatabase() {
       }
     });
 
-    await client.connect(); // Connect only if no existing connection
-    db = client.db(dbName); // Select your database
+    await client.connect(); // You'll likely need to cast here
+    const db = client.db(dbName);
+
+    if (!cachedClient) {
+      cachedClient = client;
+    }
+    cachedDb = db;
 
     console.log("Successfully connected to MongoDB!");
     return db;
-
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
-    throw error; // Re-throw the error for handling in API routes
+    throw error;
   }
 }
 
-export default connectToDatabase; // This is the key change: export the function
+export default connectToDatabase;
