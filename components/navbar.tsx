@@ -65,19 +65,10 @@ export default function App() {
             Contact
           </Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link
-            className={router === "/int" ? undefined : "links"}
-            color={router === "/int" ? undefined : "foreground"}
-            href="/int"
-          >
-            Integrations
-          </Link>
-        </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={Link} href="/find-a-hospital" variant="flat">
+          <Button className="links" as={Link} href="/find-a-hospital" variant="flat">
             Find A Hospital
           </Button>
         </NavbarItem>
@@ -95,15 +86,6 @@ export default function App() {
             size="lg"
           >
             Contact
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link
-            className={router === "/int" ? undefined : "linksm"}
-            href="/int"
-            size="lg"
-          >
-            Integrations
           </Link>
         </NavbarMenuItem>
       </NavbarMenu>

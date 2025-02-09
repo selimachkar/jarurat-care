@@ -9,6 +9,7 @@ L.Icon.Default.imagePath = '/images/';
 interface LocationInfo {
     url: string;
     city: string;
+    name: string
 }
 
 interface ClientSideLeafletWrapperProps {
@@ -49,7 +50,7 @@ const ClientSideLeafletWrapper: React.FC<ClientSideLeafletWrapperProps> = ({ loc
                         console.warn("Could not extract location name from URL:", url, nameError);
                     }
 
-                    const popupContent = `${locationName}: <a href="${url}" target="_blank" rel="noopener noreferrer">View on Google Maps</a>`;
+                    const popupContent = `${locationInfo.name}: <a href="${url}" target="_blank" rel="noopener noreferrer">View on Google Maps</a>`;
                     const marker = L.marker([lat, lng])
                         .bindPopup(popupContent);
                     markersGroup.addLayer(marker);
