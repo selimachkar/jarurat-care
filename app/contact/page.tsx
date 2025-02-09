@@ -65,7 +65,16 @@ export default function ContactForm() {
       </div>}
 
       <Form className="w-full input-wrapper max-w-xs mx-auto" validationBehavior="native">
-    <label htmlFor="email">Email</label>
+    <label htmlFor="name">Full Name</label>
+      <Input 
+        isRequired
+        errorMessage="Please enter a valid Full Name"
+        labelPlacement="outside"
+        name="name"
+        placeholder="Enter your Name"
+        type="text"
+      />
+       <label htmlFor="email">Email</label>
       <Input 
         isRequired
         errorMessage="Please enter a valid email"
@@ -73,6 +82,13 @@ export default function ContactForm() {
         name="email"
         placeholder="Enter your email"
         type="email"
+      />
+        <label htmlFor="message">Message</label>
+      <Input 
+        labelPlacement="outside"
+        name="message"
+        placeholder="Enter your Message"
+        type="text"
       />
       <Button className='links' type="submit" variant="bordered">
         Submit
@@ -82,6 +98,7 @@ export default function ContactForm() {
           You submitted: <code>{JSON.stringify(submitted)}</code>
         </div>
       )}
+
     </Form>
     </div>
     </section>
