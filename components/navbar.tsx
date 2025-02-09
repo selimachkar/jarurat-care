@@ -1,5 +1,6 @@
 "use client"; 
-import React from "react";
+import React, { useEffect } from "react";
+";
 import {
   Navbar,
   NavbarBrand,
@@ -26,6 +27,11 @@ export default function App() {
   const router = usePathname (); 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+    // Close the menu when the route changes
+    useEffect(() => {
+      setIsMenuOpen(false);
+    }, [router]);
+  
   return (
     <Navbar className="bgt" onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
