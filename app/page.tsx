@@ -9,7 +9,7 @@ import { GithubIcon } from "@/components/icons";
 
 export default function Home() {
   return (
-    <div className="bg-gradient-to-tr from-red-500 to-purple-400 relative h-screen">
+    <div className="bg-gradient-to-tr from-blue-700 to-oragn-200 relative h-screen">
 
 
     <div className="absolute inset-0 flex flex-col justify-center items-center w-5/6 max-w-lg mx-auto text-center">
