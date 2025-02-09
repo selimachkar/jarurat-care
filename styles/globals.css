@@ -12,6 +12,7 @@
 
 .bgcolor {
     background-color: #A5EEFD;
+    background-repeat: repeat;
 }
 .bgt{
     background-color: transparent;
