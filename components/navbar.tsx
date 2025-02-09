@@ -39,7 +39,7 @@ export default function App() {
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden links"
+          className="sm:hidden links mobile-menu-toggle-button"
         />
         <NavbarBrand>
           <NGOLogo />

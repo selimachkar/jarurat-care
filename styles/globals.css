@@ -17,7 +17,12 @@
 .bgt{
     background-color: transparent;
 }
-
+.before\:bg-current:before {
+    height: 3px !important;
+}
+.after\:bg-current:after {
+    height: 3px !important;
+}
 .map-container-selector { 
     position: relative; 
     z-index: 1;       
