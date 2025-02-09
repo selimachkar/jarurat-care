@@ -8,8 +8,14 @@ const DynamicLeafletComponent = dynamic( // Rename DynamicLeaflet to DynamicLeaf
     { ssr: false, loading: () => <p>Map loading...</p> } // Optional loading indicator
 );
 
-interface LeafletMapProps {
-    locationUrls: string[];
+interface LocationInfo { // Make sure this LocationInfo interface is also present in this file, OR import it if you have it defined elsewhere
+    url: string;
+    city: string;
+    name: string;
+}
+
+interface LeafletMapProps { // Correct LeafletMapProps interface
+    locationUrls: LocationInfo[]; // <---- IMPORTANT: locationUrls should be LocationInfo[]
 }
 
 const LeafletMap: React.FC<LeafletMapProps> = ({ locationUrls }) => {
