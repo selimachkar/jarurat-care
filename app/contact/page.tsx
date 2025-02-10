@@ -5,55 +5,58 @@ import { Input } from '@heroui/input';
 import { Button
 
  } from '@heroui/button';
-export default function ContactForm() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState('');
+  export default function ContactForm() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState<string>(''); 
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(''); // Clear any previous errors
-
-    if (!name || !email || !message) {
-      setError("Please fill in all fields.");
-      return;
-    }
-
-
-    try {
-      const response = await fetch('/api/contact', {  // Replace with your API route
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, message }),
-      });
-
-      if (response.ok) {
-        setSubmitted(true);
-        setName('');
-        setEmail('');
-        setMessage('');
-      } else {
-        const errorData = await response.json(); // Try to parse error from server
-        setError(errorData.message || "An error occurred. Please try again later.");
+  
+    const handleSubmit = async (e: { preventDefault: () => void; }) => { 
+      e.preventDefault();
+      setError('');
+  
+      if (!name || !email || !message) {
+        setError("Please fill in all fields.");
+        return;
       }
-    } catch (err) {
-      setError("An error occurred. Please try again later.");
-      console.error("Error submitting form:", err);
-    }
-  };
+  
+      try {
+        const response = await fetch('/api/contact', { 
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, message }),
+        });
+  
+        if (response.ok) {
+          const responseData = await response.json(); 
+          setSubmitted(true);
+          setSuccessMessage(responseData.message || "Message submitted successfully!");
+          setName('');
+          setEmail('');
+          setMessage('');
+        } else {
+          const errorData = await response.json();
+          setError(errorData.message || "An error occurred. Please try again later.");
+        }
+      } catch (err) {
+        setError("An error occurred. Please try again later.");
+        console.error("Error submitting form:", err);
+      }
+    };
 
-  if (submitted) {
-    return (
-      <div className="container mx-auto p-4 mt-8">
-        <h2 className="text-2xl font-bold mb-4">Thank you for your message!</h2>
-        <p>We will get back to you shortly.</p>
-      </div>
-    );
-  }
+    if (submitted) {
+      return (
+        <div className="container h-screen mx-auto p-4 mt-8">
+          <h2 className="text-2xl font-bold mb-4">Thank you for your message!</h2>
+          <p>{successMessage}</p> 
+        </div>
+      );
+    }
 
   return (
 <section className="py-8"> {/* Add padding for spacing */}
@@ -64,7 +67,7 @@ export default function ContactForm() {
         <span className="block sm:inline">{error}</span>
       </div>}
 
-      <Form className="w-full input-wrapper max-w-xs mx-auto" validationBehavior="native">
+      <Form className="w-full input-wrapper max-w-xs mx-auto" onSubmit={handleSubmit} validationBehavior="native">
     <label htmlFor="name">Full Name</label>
       <Input 
         isRequired
@@ -73,15 +76,19 @@ export default function ContactForm() {
         name="name"
         placeholder="Enter your Name"
         type="text"
+        value={name} 
+        onValueChange={setName} 
       />
        <label htmlFor="email">Email</label>
       <Input 
         isRequired
-        errorMessage="Please enter a valid email"
+        errorMessage="Please enter a valid Email"
         labelPlacement="outside"
         name="email"
-        placeholder="Enter your email"
+        placeholder="Enter your Email"
         type="email"
+        value={email} 
+        onValueChange={setEmail} 
       />
         <label htmlFor="message">Message</label>
       <Input 
@@ -89,18 +96,18 @@ export default function ContactForm() {
         name="message"
         placeholder="Enter your Message"
         type="text"
+        value={message} 
+        onValueChange={setMessage} 
       />
       <Button className='links' type="submit" variant="bordered">
         Submit
       </Button>
-      {submitted && (
-        <div className="text-small text-default-500">
-          You submitted: <code>{JSON.stringify(submitted)}</code>
-        </div>
-      )}
-
     </Form>
     </div>
     </section>
   );
+}
+
+function setSuccessMessage(arg0: any) {
+  throw new Error('Function not implemented.');
 }

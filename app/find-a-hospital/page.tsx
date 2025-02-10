@@ -2,12 +2,11 @@
 import LeafletMap from '@/components/map';
 import LocationList from '@/components/LocationList';
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
-// Define the LocationInfo interface (ensure this matches your actual data structure)
+
 export interface LocationInfo {
     url: string;
     city: string;
     name: string;
-    // Add other properties if your data has more fields
 }
 
 export default function HomePage() {
@@ -15,8 +14,8 @@ export default function HomePage() {
     const [selectedCity, setSelectedCity] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [selectedLocation, setSelectedLocation] = useState<LocationInfo | null>(null);
-    const [loading, setLoading] = useState<boolean>(true); // Add loading state
-    const [error, setError] = useState<string | null>(null); // Add error state
+    const [loading, setLoading] = useState<boolean>(true); 
+    const [error, setError] = useState<string | null>(null); 
 
     useEffect(() => {
         const fetchHospitals = async () => {
@@ -29,7 +28,7 @@ export default function HomePage() {
                 }
                 const hospitals = await res.json();
                 setLocationData(hospitals);
-                console.log("locationData state UPDATED:", hospitals); // <--- ADD THIS LOG
+                console.log("locationData state UPDATED:", hospitals); 
             } catch (e: any) {
                 console.error("Error fetching data from API:", e);
                 setError("Failed to load hospital data. Please try again later.");
@@ -43,15 +42,15 @@ export default function HomePage() {
 
     const uniqueCities = useMemo(() => {
         if (!locationData || locationData.length === 0) {
-            return []; // Return empty array if no data yet to avoid errors
+            return []; 
         }
         const cities = new Set<string>();
         locationData.forEach(location => {
-            if (location.city) { // Check if city exists to be safe
+            if (location.city) { 
                 cities.add(location.city);
             }
         });
-        return Array.from(cities).sort(); // Sort cities alphabetically
+        return Array.from(cities).sort(); 
     }, [locationData]);
 
     const filteredLocations = useMemo(() => {
@@ -102,7 +101,7 @@ export default function HomePage() {
                     <LeafletMap
                         locationUrls={filteredLocations}
                         onMarkerClick={handleMarkerClick}
-                        selectedLocation={selectedLocation} // Pass selectedLocation prop
+                        selectedLocation={selectedLocation} 
                     />
                 </div>
 

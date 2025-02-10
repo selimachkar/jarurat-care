@@ -48,8 +48,7 @@ export default function RootLayout({
             </main>
             <footer className="w-full flex items-center justify-center py-3">
              
-                <span className="text-default-600">Powered by </span>
-                <p className="text-primary"> Selim Chaaya Alachkar</p>
+                <p className=""> Selim Chaaya Alachkar</p>
             </footer>
           </div>
         </Providers>
