@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server'; 
 import connectToDatabase from '@/Lib/db';
 
-export async function POST(req: { json: () => any; }, res: any) {
+export async function POST(req: NextRequest) {
   try {
     const db = await connectToDatabase();
     const contactsCollection = db.collection('contacts'); 
