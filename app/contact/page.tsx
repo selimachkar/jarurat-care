@@ -57,7 +57,7 @@ export default function ContactForm() {
 
   return (
 <section className="py-8"> {/* Add padding for spacing */}
-  <div className="container mx-auto"> {/* Center horizontally */}
+  <div className="container mx-auto relative h-screen"> {/* Center horizontally */}
     <h2 className="text-2xl font-bold mb-4 text-gray-700 text-center">Contact Us</h2>
       {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4" role="alert">
         <strong className="font-bold">Error!</strong>
