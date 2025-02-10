@@ -14,14 +14,17 @@ interface LocationInfo { // Make sure this LocationInfo interface is also presen
     name: string;
 }
 
-interface LeafletMapProps { // Correct LeafletMapProps interface
-    locationUrls: LocationInfo[]; // <---- IMPORTANT: locationUrls should be LocationInfo[]
+interface LeafletMapProps {
+    locationUrls: LocationInfo[];
+    onMarkerClick: (location: LocationInfo) => void; // <--- ADD THIS LINE: Define onMarkerClick prop
+    selectedLocation: LocationInfo | null;      // <--- ADD THIS LINE: Define selectedLocation prop
 }
-
 const LeafletMap: React.FC<LeafletMapProps> = ({ locationUrls }) => {
     return (
         <div style={{ height: '500px' }}>
-            <DynamicLeafletComponent locationUrls={locationUrls} />
+            <DynamicLeafletComponent locationUrls={locationUrls} selectedLocation={null} onMarkerClick={function (location: LocationInfo): void {
+                throw new Error('Function not implemented.');
+            } } />
         </div>
     );
 };

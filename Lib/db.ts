@@ -1,4 +1,3 @@
-// lib/mongodb.js (or a similar utility file)
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.MONGODB_URI; // Get URI from environment variables
 const dbName = process.env.MONGODB_DB_NAME

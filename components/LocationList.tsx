@@ -1,3 +1,4 @@
+"use client"
 import React, { useRef, useEffect } from 'react';
 import { LocationInfo } from '@/app/find-a-hospital/page';
 
