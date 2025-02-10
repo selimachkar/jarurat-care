@@ -84,7 +84,7 @@ export default function HomePage() {
     }, []);
 
     if (loading) {
-        return <div className="container mx-auto p-4 text-center">Loading hospitals...</div>; // Loading indicator
+        return <div className="h-screen container mx-auto p-4 text-center">Loading hospitals...</div>; // Loading indicator
     }
 
     if (error) {
@@ -97,8 +97,8 @@ export default function HomePage() {
             <h1 className="text-2xl font-bold mb-4 mx-auto">Hospitals</h1>
 
             <div className="flex flex-col md:flex-row h-auto md:h-[600px]">
-                <div className="w-full md:w-3/5 h-auto md:h-full md:pr-4 mb-4 md:mb-0">
-                    <LeafletMap
+                <div className="map-container-selector w-full md:w-3/5 h-auto md:h-full md:pr-4 mb-4 md:mb-0">
+                    <LeafletMap 
                         locationUrls={filteredLocations}
                         onMarkerClick={handleMarkerClick}
                         selectedLocation={selectedLocation} 
